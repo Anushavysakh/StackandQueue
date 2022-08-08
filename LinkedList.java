@@ -1,60 +1,68 @@
 package com.day14stackandqueue.bridglabz;
 
 
-public class LinkedList<T> {
-	
-		public class Node <T>{
+public class LinkedList2<T> {
 
-			int data; 
-			Node link; 
+	public class Node<T> {
+
+		int data;
+		Node link;
+	}
+
+	Node top;
+
+	LinkedList2() {
+		this.top = null;
+	}
+
+	public void push(int x) {
+
+		Node temp = new Node();
+
+		if (temp == null) {
+			System.out.print("\nHeap Overflow");
+			return;
 		}
 
-		Node top;
-		
-		LinkedList()
-		{
-			this.top = null;
-		}
+		temp.data = x;
+		temp.link = top;
+		top = temp;
+	}
 
-		public void push(int x) 
-		{
-			
-			Node temp = new Node();
+	public boolean isEmpty() {
+		return top == null;
+	}
 
-			if (temp == null) {
-				System.out.print("\nHeap Overflow");
-				return;
-			}
 
-			temp.data = x;
-			temp.link = top;
-			top = temp;
-		}
+	public void display() {
+		if (top == null) {
+			System.out.printf("\nStack Underflow");
+		} else {
+			Node temp = top;
+			while (temp != null) {
 
-		public boolean isEmpty()
-		{
-			return top == null;
-		}
+				System.out.printf("%d->", temp.data);
 
-		// Utility function to return top element in a stack
-		
-
-		public void display()
-		{
-			// check for stack underflow
-			if (top == null) {
-				System.out.printf("\nStack Underflow");
-			}
-			else {
-				Node temp = top;
-				while (temp != null) {
-
-					// print node data
-					System.out.printf("%d->", temp.data);
-
-					temp = temp.link;
-				}
+				temp = temp.link;
 			}
 		}
+	}
+
+	public int peek() {
+		if (!isEmpty()) {
+			return top.data;
+		} else {
+			System.out.println("Stack is empty");
+			return -1;
+		}
+	}
+
+	public void pop() {
+		if (top == null) {
+			System.out.print("\nStack Underflow");
+			return;
+		}
+
+		top = (top).link;
+	}
 }
-
